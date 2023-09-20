@@ -167,7 +167,20 @@ class UserController {
         // ambil user berdarkan id
         const user = await model.select("id, nama, email").find(user_id).get()
 
-        res.json(user[0])
+        // cek apakah user ada atau tidak
+        // untuk menghindari jwt token yang sudah lama namun user sudah terhapus
+        if(user.length > 0){
+
+            // jika ada kirimkan data user
+            res.json(user[0])
+        }else{
+
+            res.status(401).json({
+                status: 401,
+                message: "User tidak terdaftar"
+            })
+        }
+
     }
 }
 
