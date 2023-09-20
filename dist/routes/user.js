@@ -10,7 +10,7 @@ userRouter.post("/register", UserController.store);
 userRouter.post("/login", UserController.login);
 userRouter.post("/me", IsLogin, UserController.me);
 userRouter.get("/", (req, res) => {
-    req.json({ message: "Hello World" });
+    res.json({ message: "Hello World" });
 });
 module.exports = userRouter;
 //# sourceMappingURL=user.js.map
