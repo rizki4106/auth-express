@@ -140,7 +140,18 @@ class UserController {
             const user_id = res.locals.user_id;
             // ambil user berdarkan id
             const user = yield model.select("id, nama, email").find(user_id).get();
-            res.json(user[0]);
+            // cek apakah user ada atau tidak
+            // untuk menghindari jwt token yang sudah lama namun user sudah terhapus
+            if (user.length > 0) {
+                // jika ada kirimkan data user
+                res.json(user[0]);
+            }
+            else {
+                res.status(401).json({
+                    status: 401,
+                    message: "User tidak terdaftar"
+                });
+            }
         });
     }
 }

@@ -14,7 +14,6 @@ userRouter.post("/me", IsLogin, UserController.me)
 userRouter.get("/", (req, res) => {
 
     req.json({message: "Hello World"})
-    
 })
 
 module.exports = userRouter
