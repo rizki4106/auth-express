@@ -1,0 +1,1 @@
+export const userRouter = require("./user")
